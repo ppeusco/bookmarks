@@ -4,7 +4,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
   def index
-    @bookmarks = Bookmark.all
+    @bookmarks = Bookmark.order('created_at desc')
   end
 
   # GET /bookmarks/1
@@ -64,9 +64,12 @@ class BookmarksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bookmark
-      @bookmark = Bookmark.find(params[:id])
+      unless @bookmark = Bookmark.where(params[:id]).first
+       flash[:alert] = 'Bookmark not found.'
+        redirect_to root_url
+      end
     end
-
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def bookmark_params
       params.require(:bookmark).permit(:title, :url)
