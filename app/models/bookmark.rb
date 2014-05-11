@@ -9,4 +9,6 @@ class Bookmark < ActiveRecord::Base
 
   # ensure the url is present, and respects the URL format for http/https
   validates :url, format: {with: Regexp.new(URI::regexp(%w(http https)))}, presence: true
+
+  paginates_per 25
 end
