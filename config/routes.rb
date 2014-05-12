@@ -1,7 +1,8 @@
 Bookmarks::Application.routes.draw do
-  get "site/index"
+ 
   devise_for :users
   resources :bookmarks
+  resources :profiles, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
