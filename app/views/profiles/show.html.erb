@@ -3,12 +3,14 @@
   <thead>
     <tr>
       <th>Url</th>
+      <th>User</th>
     </tr>
   </thead>
   <tbody>
   <% @bookmarks.each do |bookmark| %>
     <tr>
     <td><%= link_to bookmark.title, bookmark.url %></td>
+    <td><%= link_to @user.username, profile_path(@user) %></td>
   </tr>
 <% end %>
   </tbody>
